@@ -93,11 +93,7 @@ public class ReactiveAgent implements Agent {
             nextCell = environment.getEastCell(cell);
         }
 
-        if (nextCell != null && !nextCell.hasWall() && !nextCell.hasAgent()) {
-              if(nextCell.hasGarbage())
-                 nextCell.setGarbage(null);
-              setCell(nextCell);
-        }
+
         int total=Collections.frequency(visitedCells,cell);
         switch(total){
             case 1:
