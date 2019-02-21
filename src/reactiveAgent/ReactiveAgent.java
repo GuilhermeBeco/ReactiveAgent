@@ -41,6 +41,19 @@ public class ReactiveAgent implements Agent {
     }
 
     private Action decide(Perception perception) {
+
+     if(perception.getN()!=null&&perception.getN().hasGarbage()){
+         return Action.NORTH;
+     }
+     if(perception.getS()!=null&&perception.getS().hasGarbage()){
+         return Action.SOUTH;
+     }
+     if(perception.getE()!=null&&perception.getE().hasGarbage()){
+         return Action.EAST;
+     }
+     if(perception.getW()!=null&&perception.getW().hasGarbage()){
+         return Action.WEST;
+     }
     int totalN,totalE,totalS,totalW;
     totalN=totalE=totalS=totalW=Integer.MAX_VALUE;
     if(perception.getN()!=null && !perception.getN().hasWall() && !perception.getN().hasAgent())
@@ -81,7 +94,9 @@ public class ReactiveAgent implements Agent {
         }
 
         if (nextCell != null && !nextCell.hasWall() && !nextCell.hasAgent()) {
-            setCell(nextCell);
+              if(nextCell.hasGarbage())
+                 nextCell.setGarbage(null);
+              setCell(nextCell);
         }
         int total=Collections.frequency(visitedCells,cell);
         switch(total){

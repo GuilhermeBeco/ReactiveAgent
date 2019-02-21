@@ -25,6 +25,8 @@ public class Environment {
         grid[2][3].setWall(new Wall());
         grid[2][4].setWall(new Wall());
         grid[5][2].setWall(new Wall());
+        grid[1][6].setGarbage(new Garbage());
+        grid[7][7].setGarbage(new Garbage());
 
         // todo modify to place more agents
         agents = new LinkedList<>();
